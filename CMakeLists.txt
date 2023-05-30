@@ -432,12 +432,14 @@ if(CURL_USE_OPENSSL)
   # Depend on OpenSSL via imported targets if supported by the running
   # version of CMake.  This allows our dependents to get our dependencies
   # transitively.
-  if(NOT CMAKE_VERSION VERSION_LESS 3.4)
-    list(APPEND CURL_LIBS OpenSSL::SSL OpenSSL::Crypto)
-  else()
-    list(APPEND CURL_LIBS ${OPENSSL_LIBRARIES})
-    include_directories(${OPENSSL_INCLUDE_DIR})
-  endif()
+  # if(NOT CMAKE_VERSION VERSION_LESS 3.4)
+  #   list(APPEND CURL_LIBS OpenSSL::SSL OpenSSL::Crypto)
+  # else()
+  list(APPEND CURL_LIBS ${OPENSSL_LIBRARIES})
+  include_directories(${OPENSSL_INCLUDE_DIR})
+
+message(STATUS "This is openssl ${OPENSSL_LIBRARIES} ${OPENSSL_INCLUDE_DIR}" )
+  # endif()
 
   if(WIN32)
     list(APPEND CURL_LIBS "ws2_32")
