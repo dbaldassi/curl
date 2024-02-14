@@ -71,6 +71,10 @@ include(CheckCCompilerFlag)
 
 project(CURL C)
 
+if( UNIX AND NOT APPLE )
+  set( CMAKE_C_EXTENSIONS ON )
+endif()
+
 file(STRINGS ${CURL_SOURCE_DIR}/include/curl/curlver.h CURL_VERSION_H_CONTENTS REGEX "#define LIBCURL_VERSION( |_NUM )")
 string(REGEX MATCH "#define LIBCURL_VERSION \"[^\"]*"
   CURL_VERSION ${CURL_VERSION_H_CONTENTS})
